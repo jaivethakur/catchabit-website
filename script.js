@@ -1,12 +1,23 @@
 /**
- * CATCHABIT SOLUTIONS — LUXURY E-COMMERCE AMAZON ADS AGENCY ENGINE
+ * CATCHABIT SOLUTIONS — ULTRA-PREMIUM INTERACTIVE ENGINE & ANIMATIONS
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
   /* ------------------------------------------------------------------------
-     1. Sticky Navigation Bar State
+     1. Cursor Follower Spotlight Effect
+     ------------------------------------------------------------------------ */
+  const cursorSpotlight = document.createElement('div');
+  cursorSpotlight.className = 'cursor-spotlight';
+  document.body.appendChild(cursorSpotlight);
+
+  document.addEventListener('mousemove', (e) => {
+    cursorSpotlight.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+  });
+
+  /* ------------------------------------------------------------------------
+     2. Sticky Navigation Bar State
      ------------------------------------------------------------------------ */
   const navbar = document.querySelector('.navbar');
   const heroSection = document.querySelector('.hero');
@@ -25,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   handleNavbarScroll();
 
   /* ------------------------------------------------------------------------
-     2. Mobile Navigation Toggle
+     3. Mobile Navigation Toggle
      ------------------------------------------------------------------------ */
   const mobileToggle = document.querySelector('.mobile-toggle');
   const mobileOverlay = document.querySelector('.mobile-nav-overlay');
@@ -48,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------------
-     3. Smooth Anchor Scroll with Header Offset
+     4. Smooth Anchor Scroll with Header Offset
      ------------------------------------------------------------------------ */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -71,16 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------------
-     4. Scroll-Triggered Reveal Animations (Intersection Observer)
+     5. Scroll-Triggered Reveal Animations (Intersection Observer)
      ------------------------------------------------------------------------ */
   const revealElements = document.querySelectorAll('.reveal-up');
   const dividerElements = document.querySelectorAll('.section-divider');
-
-  const revealObserverOptions = {
-    root: null,
-    rootMargin: '0px 0px -70px 0px',
-    threshold: 0.12
-  };
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -89,13 +94,104 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.unobserve(entry.target);
       }
     });
-  }, revealObserverOptions);
+  }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
 
   revealElements.forEach(el => revealObserver.observe(el));
   dividerElements.forEach(el => revealObserver.observe(el));
 
   /* ------------------------------------------------------------------------
-     5. Stat Numbers Count-Up Animation
+     6. FUNCTIONAL INTERACTIVE DEMO CONSOLE ENGINE
+     ------------------------------------------------------------------------ */
+  const demoSlider = document.getElementById('bidSlider');
+  const sliderValLabel = document.getElementById('sliderValLabel');
+  const metricSales = document.getElementById('metricSales');
+  const metricAcos = document.getElementById('metricAcos');
+  const metricRoas = document.getElementById('metricRoas');
+  const metricTacos = document.getElementById('metricTacos');
+  const dynamicChartPath = document.getElementById('dynamicChartPath');
+  const consoleTabs = document.querySelectorAll('.console-tab');
+
+  // Base Data Model for Channels
+  const channelData = {
+    all: { baseSales: 28.5, maxSales: 54.2, startAcos: 29.8, minAcos: 13.4, startRoas: 3.35, maxRoas: 7.46, startTacos: 18.2, minTacos: 7.8 },
+    sp:  { baseSales: 18.2, maxSales: 36.8, startAcos: 26.4, minAcos: 12.8, startRoas: 3.78, maxRoas: 7.81, startTacos: 14.2, minTacos: 6.2 },
+    sb:  { baseSales: 8.4,  maxSales: 18.5, startAcos: 31.2, minAcos: 14.9, startRoas: 3.20, maxRoas: 6.71, startTacos: 16.5, minTacos: 7.4 },
+    sd:  { baseSales: 4.2,  maxSales: 11.4, startAcos: 34.5, minAcos: 16.2, startRoas: 2.89, maxRoas: 6.17, startTacos: 19.1, minTacos: 8.9 },
+    dsp: { baseSales: 6.8,  maxSales: 19.2, startAcos: 24.1, minAcos: 11.5, startRoas: 4.14, maxRoas: 8.69, startTacos: 12.4, minTacos: 5.1 }
+  };
+
+  let activeChannel = 'all';
+
+  function updateConsoleMetrics() {
+    if (!demoSlider) return;
+    const factor = parseFloat(demoSlider.value) / 100; // 0 to 1
+    const data = channelData[activeChannel];
+
+    sliderValLabel.textContent = `+${demoSlider.value}% Optimization`;
+
+    // Calculate Interpolated Metrics
+    const currentSales = (data.baseSales + (data.maxSales - data.baseSales) * factor).toFixed(1);
+    const currentAcos = (data.startAcos - (data.startAcos - data.minAcos) * factor).toFixed(1);
+    const currentRoas = (data.startRoas + (data.maxRoas - data.startRoas) * factor).toFixed(2);
+    const currentTacos = (data.startTacos - (data.startTacos - data.minTacos) * factor).toFixed(1);
+
+    if (metricSales) metricSales.textContent = `₹${currentSales}L`;
+    if (metricAcos) metricAcos.textContent = `${currentAcos}%`;
+    if (metricRoas) metricRoas.textContent = `${currentRoas}x`;
+    if (metricTacos) metricTacos.textContent = `${currentTacos}%`;
+
+    // Dynamic Chart Path Morphing
+    if (dynamicChartPath) {
+      const p1 = Math.round(130 - factor * 40);
+      const p2 = Math.round(110 - factor * 50);
+      const p3 = Math.round(80 - factor * 55);
+      const p4 = Math.round(45 - factor * 35);
+      const p5 = Math.round(25 - factor * 15);
+
+      const dPath = `M 20 140 Q 100 ${p1}, 180 ${p2} T 340 ${p3} T 480 ${p4} T 580 ${p5} L 580 160 L 20 160 Z`;
+      dynamicChartPath.setAttribute('d', dPath);
+    }
+  }
+
+  if (demoSlider) {
+    demoSlider.addEventListener('input', updateConsoleMetrics);
+  }
+
+  consoleTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      consoleTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeChannel = tab.getAttribute('data-channel');
+      updateConsoleMetrics();
+    });
+  });
+
+  updateConsoleMetrics();
+
+  /* ------------------------------------------------------------------------
+     7. INTERACTIVE SERP PLACEMENT SIMULATOR
+     ------------------------------------------------------------------------ */
+  const placementBtns = document.querySelectorAll('.placement-btn');
+  const serpSlots = document.querySelectorAll('.serp-ad-slot');
+
+  placementBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetSlot = btn.getAttribute('data-placement');
+
+      placementBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      serpSlots.forEach(slot => {
+        slot.classList.remove('active-target');
+        if (slot.getAttribute('data-slot') === targetSlot) {
+          slot.classList.add('active-target');
+        }
+      });
+    });
+  });
+
+  /* ------------------------------------------------------------------------
+     8. Stat Numbers Count-Up Animation
      ------------------------------------------------------------------------ */
   const statValues = document.querySelectorAll('.stat-value');
   let hasAnimatedStats = false;
@@ -150,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------------
-     6. FAQ Accordion Logic
+     9. FAQ Accordion Logic
      ------------------------------------------------------------------------ */
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
@@ -158,15 +254,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (questionBtn) {
       questionBtn.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
-        
-        // Close all other items
+
         faqItems.forEach(other => {
           other.classList.remove('active');
           const btn = other.querySelector('.faq-question');
           if (btn) btn.setAttribute('aria-expanded', 'false');
         });
 
-        // Toggle current item
         if (!isActive) {
           item.classList.add('active');
           questionBtn.setAttribute('aria-expanded', 'true');
@@ -176,24 +270,41 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------------
-     7. Magnetic Button Micro-Interactions
+     10. Live Optimization Toast Ticker Notification
      ------------------------------------------------------------------------ */
-  const primaryButtons = document.querySelectorAll('.btn-primary');
-  primaryButtons.forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform = `translate3d(${x * 0.15}px, ${y * 0.15}px, 0) scale(1.03)`;
-    });
+  const activityToast = document.getElementById('activityToast');
+  const toastText = document.getElementById('toastText');
 
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = '';
-    });
-  });
+  const liveActivities = [
+    "Just saved 18.4% ACoS for an Ayurvedic Brand • 2m ago",
+    "Top of Search placement multiplier boosted ROAS to 7.2x • 8m ago",
+    "Negative phrase harvesting saved ₹42,000 spend • 14m ago",
+    "Sponsored Display retargeting campaign launched • 21m ago",
+    "Amazon DSP programmatic audience synced for Q3 • 35m ago"
+  ];
+
+  let toastIndex = 0;
+
+  function showNextToast() {
+    if (!activityToast || !toastText) return;
+    toastText.textContent = liveActivities[toastIndex];
+    activityToast.classList.add('show');
+
+    setTimeout(() => {
+      activityToast.classList.remove('show');
+    }, 5000);
+
+    toastIndex = (toastIndex + 1) % liveActivities.length;
+  }
+
+  // Show first toast after 4s, repeat every 14s
+  setTimeout(() => {
+    showNextToast();
+    setInterval(showNextToast, 14000);
+  }, 4000);
 
   /* ------------------------------------------------------------------------
-     8. Contact Form AJAX Submission (Web3Forms)
+     11. Contact Form Web3Forms AJAX Handling
      ------------------------------------------------------------------------ */
   const contactForm = document.getElementById('auditForm');
   const formStatus = document.getElementById('formStatus');
@@ -252,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------------
-     9. Active Nav Link Scroll Tracker
+     12. Active Nav Link Scroll Tracker
      ------------------------------------------------------------------------ */
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
