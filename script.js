@@ -1,5 +1,5 @@
 /**
- * CATCHABIT SOLUTIONS — AUTHENTIC AMAZON.IN PLACEMENT ENGINE & PARTICLES
+ * CATCHABIT SOLUTIONS — AUTHENTIC ADVERTISING.AMAZON.IN CONSOLE ENGINE
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. AUTHENTIC AMAZON ADVERTISING DEMO CONSOLE ENGINE
+  // 5. AUTHENTIC ADVERTISING.AMAZON.IN CONSOLE ENGINE
   const amazonConsoleTabs = document.querySelectorAll('.amazon-tab');
   const amzAdPreviewPanel = document.getElementById('amzAdPreviewPanel');
   const bidBoostSlider = document.getElementById('bidBoostSlider');
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const amzRoas = document.getElementById('amzRoas');
   const amzCpc = document.getElementById('amzCpc');
 
-  // Ad Mockup Templates
+  // Authentic Amazon India Ad Templates
   const amazonAdTemplates = {
     sp: `
       <div class="sp-product-ad-card">
@@ -115,15 +115,15 @@ document.addEventListener('DOMContentLoaded', () => {
           <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
         </div>
         <div class="sp-product-info">
-          <h4>CatchAbit Client Premium Organic Hair Serum (200ml)</h4>
+          <h4>CatchAbit Client Organic Hair Growth Serum - 100% Pure Essential Oils (200 ml)</h4>
           <div class="sp-rating-row">
             <span>★ ★ ★ ★ ★ 4.8</span>
-            <span style="color: #8c9ba5;">(1,420 ratings)</span>
+            <span style="color: #8c9ba5;">(2,480 ratings)</span>
           </div>
           <div class="sp-price-row">
             <span class="sp-price">₹499</span>
             <span class="prime-badge">✓prime</span>
-            <span style="font-size: 0.75rem; color: var(--success-green); font-family: var(--font-mono);">Keyword Match: EXACT (Placement Multiplier +185%)</span>
+            <span style="font-size: 0.75rem; color: var(--success-green); font-family: var(--font-mono);">Exact Keyword Match (Top of Search +185%)</span>
           </div>
         </div>
       </div>
@@ -134,21 +134,21 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="sb-logo-title">
             <div class="sb-logo-box">C</div>
             <div>
-              <div class="sb-headline">Unlock Pure Organic Wellness — CatchAbit Official Store</div>
-              <div style="font-size: 0.7rem; color: #8c9ba5; font-family: var(--font-mono); margin-top: 2px;">SPONSORED BRANDS HEADLINE SEARCH BANNER</div>
+              <div class="sb-headline">Pure Organic Hair & Skin Care — Official CatchAbit Client Store</div>
+              <div style="font-size: 0.7rem; color: #8c9ba5; font-family: var(--font-mono); margin-top: 2px;">SPONSORED BRANDS TOP HEADLINE BANNER (amazon.in)</div>
             </div>
           </div>
-          <span class="sp-tag-badge" style="position: static; background: var(--gold-primary);">TOP BANNER SLOT</span>
+          <span class="sp-tag-badge" style="position: static; background: var(--gold-primary);">TOP BANNER</span>
         </div>
         <div class="sb-product-row">
           <div class="sb-item-box">
             <div style="font-size: 0.7rem; color: var(--gold-bright);">ASIN #1</div>
-            <div class="item-title">Herbal Hair Oil 200ml</div>
+            <div class="item-title">Herbal Hair Serum 200ml</div>
             <div class="item-price">₹499</div>
           </div>
           <div class="sb-item-box">
             <div style="font-size: 0.7rem; color: var(--gold-bright);">ASIN #2</div>
-            <div class="item-title">Organic Face Scrub</div>
+            <div class="item-title">Face Scrub 100g</div>
             <div class="item-price">₹649</div>
           </div>
           <div class="sb-item-box">
@@ -160,39 +160,39 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `,
     sbv: `
-      <div class="sp-product-ad-card" style="border-color: var(--amazon-orange);">
-        <span class="sp-tag-badge" style="background: #e65100; color: #fff;">SPONSORED BRANDS VIDEO (SBV)</span>
-        <div style="width: 140px; height: 90px; background: #000; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--amazon-orange); flex-shrink: 0;">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--amazon-orange)"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-          <span style="font-size: 0.65rem; color: #fff; font-family: var(--font-mono); margin-top: 4px;">AUTOPLAY DEMO</span>
+      <div class="sp-product-ad-card" style="border-color: var(--amz-console-orange);">
+        <span class="sp-tag-badge" style="background: #e65100; color: #fff;">SPONSORED BRANDS VIDEO (SBV amazon.in)</span>
+        <div style="width: 140px; height: 90px; background: #000; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--amz-console-orange); flex-shrink: 0;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--amz-console-orange)"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span style="font-size: 0.65rem; color: #fff; font-family: var(--font-mono); margin-top: 4px;">AUTOPLAY VIDEO</span>
         </div>
         <div class="sp-product-info">
-          <h4>Video Showcase: Pure Ayurvedic Ingredients Campaign</h4>
+          <h4>Video Showcase: Organic Ingredients & Fast Hair Growth Results</h4>
           <div class="sp-rating-row">
             <span>★ ★ ★ ★ ★ 4.9</span>
-            <span style="color: #8c9ba5;">(2,180 ratings)</span>
+            <span style="color: #8c9ba5;">(3,120 ratings)</span>
           </div>
           <div class="sp-price-row">
             <span class="sp-price">₹1,299</span>
             <span class="prime-badge">✓prime</span>
-            <span style="font-size: 0.75rem; color: var(--gold-bright); font-family: var(--font-mono);">High CTR Video Placement</span>
+            <span style="font-size: 0.75rem; color: var(--gold-bright); font-family: var(--font-mono);">High Click-Through Video Ad</span>
           </div>
         </div>
       </div>
     `,
     sd: `
-      <div class="sp-product-ad-card" style="border-color: var(--amazon-blue);">
-        <span class="sp-tag-badge" style="background: var(--amazon-blue); color: #fff;">SPONSORED DISPLAY (SD DETAIL PAGE BUY BOX)</span>
-        <div class="sp-product-img" style="border-color: var(--amazon-blue);">
-          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="var(--amazon-blue)" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+      <div class="sp-product-ad-card" style="border-color: var(--amz-console-blue);">
+        <span class="sp-tag-badge" style="background: var(--amz-console-blue); color: #fff;">SPONSORED DISPLAY (SD DETAIL PAGE BUY BOX)</span>
+        <div class="sp-product-img" style="border-color: var(--amz-console-blue);">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="var(--amz-console-blue)" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
         </div>
         <div class="sp-product-info">
-          <h4>Competitor ASIN Conquest Banner Placement</h4>
-          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.35rem;">Displayed directly below competitor "Add to Cart" Buy Box</div>
+          <h4>Competitor Detail Page Buy Box Slot Placement</h4>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.35rem;">Placed directly below competitor "Add to Cart" Buy Box on amazon.in</div>
           <div class="sp-price-row">
             <span class="sp-price">₹849</span>
             <span class="prime-badge">✓prime</span>
-            <span style="font-size: 0.75rem; color: var(--success-green); font-family: var(--font-mono);">Cross-Sell Retargeting Active</span>
+            <span style="font-size: 0.75rem; color: var(--success-green); font-family: var(--font-mono);">ASIN Retargeting Active</span>
           </div>
         </div>
       </div>

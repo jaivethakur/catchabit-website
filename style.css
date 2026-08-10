@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CATCHABIT SOLUTIONS — AUTHENTIC AMAZON.IN SERP & DETAIL PAGE PLACEMENT MOCKUP
+   CATCHABIT SOLUTIONS — AUTHENTIC ADVERTISING.AMAZON.IN CONSOLE SUITE
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
@@ -17,16 +17,15 @@
   --gold-border: rgba(212, 175, 55, 0.18);
   --gold-border-active: rgba(247, 223, 139, 0.6);
 
-  /* Authentic Amazon India Brand Colors */
-  --amazon-in-navy: #131921;
-  --amazon-in-subnav: #232f3e;
-  --amazon-in-yellow: #febd69;
-  --amazon-in-orange: #ff9900;
-  --amazon-in-button: #ffd814;
-  --amazon-in-button-border: #fcd200;
-  --amazon-in-blue-link: #007185;
-  --amazon-in-text: #0f1111;
-  --amazon-in-muted: #565959;
+  /* Authentic advertising.amazon.in Console Colors */
+  --amz-console-navy: #131921;
+  --amz-console-header: #0f141d;
+  --amz-console-subnav: #19222d;
+  --amz-console-card: #141c26;
+  --amz-console-orange: #ff9900;
+  --amz-console-blue: #007185;
+  --amz-console-yellow: #febd69;
+  --amz-console-button: #ffd814;
 
   --champagne: #f4eee5;
   --text-primary: #ffffff;
@@ -127,7 +126,7 @@ body {
   right: -10%;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, var(--amazon-in-orange) 0%, rgba(255, 153, 0, 0.12) 50%, transparent 80%);
+  background: radial-gradient(circle, var(--amz-console-orange) 0%, rgba(255, 153, 0, 0.12) 50%, transparent 80%);
   animation: floatOrb2 22s infinite alternate ease-in-out;
 }
 
@@ -423,9 +422,9 @@ p.lead { font-size: 1.1875rem; color: var(--text-muted); font-weight: 400; line-
   color: var(--text-muted);
 }
 
-/* AMAZON CONSOLE CONTAINER */
+/* AUTHENTIC ADVERTISING.AMAZON.IN CONSOLE WRAPPER */
 .amazon-console-wrapper {
-  background: var(--amazon-in-navy);
+  background: var(--amz-console-navy);
   border: 1px solid var(--gold-border-active);
   border-radius: var(--radius-xl);
   overflow: hidden;
@@ -435,7 +434,7 @@ p.lead { font-size: 1.1875rem; color: var(--text-muted); font-weight: 400; line-
 }
 
 .amazon-console-nav {
-  background: #0f141d;
+  background: var(--amz-console-header);
   padding: 0.85rem 1.25rem;
   display: flex;
   align-items: center;
@@ -444,14 +443,14 @@ p.lead { font-size: 1.1875rem; color: var(--text-muted); font-weight: 400; line-
 }
 
 .amazon-console-logo { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-sans); font-size: 0.85rem; font-weight: 700; color: #ffffff; }
-.amazon-console-logo span { color: var(--amazon-in-orange); }
+.amazon-console-logo span { color: var(--amz-console-orange); }
 .amazon-account-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
 
-.amazon-console-tabs { display: flex; background: #19222d; padding: 0.4rem 0.6rem; gap: 0.35rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); overflow-x: auto; }
+.amazon-console-tabs { display: flex; background: var(--amz-console-subnav); padding: 0.4rem 0.6rem; gap: 0.35rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); overflow-x: auto; }
 .amazon-tab { font-family: var(--font-sans); font-size: 0.78125rem; font-weight: 600; padding: 0.45rem 0.85rem; border-radius: 6px; border: 1px solid transparent; background: none; color: #aab7c4; cursor: pointer; white-space: nowrap; transition: all var(--transition-fast); }
 .amazon-tab.active, .amazon-tab:hover { background: rgba(255, 153, 0, 0.18); color: #ffffff; border-color: rgba(255, 153, 0, 0.5); }
 
-.amazon-metric-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; padding: 1rem 1.25rem; background: #141c26; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.amazon-metric-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; padding: 1rem 1.25rem; background: var(--amz-console-card); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
 .amazon-metric-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: var(--radius-md); padding: 0.65rem; text-align: center; }
 .amazon-metric-card .lbl { font-family: var(--font-mono); font-size: 0.65rem; color: #8c9ba5; text-transform: uppercase; }
 .amazon-metric-card .val { font-family: var(--font-mono); font-size: 1.15rem; font-weight: 700; color: var(--gold-bright); margin-top: 0.25rem; }
@@ -471,7 +470,7 @@ p.lead { font-size: 1.1875rem; color: var(--text-muted); font-weight: 400; line-
   position: relative;
 }
 
-.sp-tag-badge { position: absolute; top: -10px; right: 15px; background: var(--amazon-in-orange); color: #000; font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 4px; text-transform: uppercase; }
+.sp-tag-badge { position: absolute; top: -10px; right: 15px; background: var(--amz-console-orange); color: #000; font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 4px; text-transform: uppercase; }
 .sp-product-img { width: 90px; height: 90px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.1); }
 .sp-product-info h4 { font-family: var(--font-sans); font-size: 1rem; font-weight: 700; color: #ffffff; margin-bottom: 0.35rem; }
 .sp-rating-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: #ffb703; margin-bottom: 0.5rem; }
@@ -549,182 +548,39 @@ p.lead { font-size: 1.1875rem; color: var(--text-muted); font-weight: 400; line-
 .placement-btn-title { font-family: var(--font-sans); font-size: 1rem; font-weight: 700; color: var(--text-primary); display: flex; justify-content: space-between; align-items: center; }
 .placement-btn-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem; }
 
-/* AUTHENTIC AMAZON.IN WEB INTERFACE CARD */
 .amazon-serp-frame {
   background: #ffffff;
-  color: var(--amazon-in-text);
+  color: #0f1111;
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--gold-glow);
   border: 2px solid var(--gold-border-active);
 }
 
-/* Amazon.in Top Search Bar */
-.amazon-in-header {
-  background: var(--amazon-in-navy);
-  padding: 0.65rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-}
+.amazon-in-header { background: #131921; padding: 0.65rem 1rem; display: flex; align-items: center; gap: 0.85rem; }
+.amazon-in-logo { color: #ffffff; font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; }
+.amazon-in-logo span { color: #ff9900; }
+.amazon-in-search-bar { display: flex; flex: 1; border-radius: 4px; overflow: hidden; }
+.amazon-in-search-input { flex: 1; padding: 0.5rem 0.85rem; border: none; font-size: 0.85rem; outline: none; color: #000000; }
+.amazon-in-search-btn { background: #febd69; border: none; padding: 0 0.85rem; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.amazon-in-subnav { background: #232f3e; color: #ffffff; padding: 0.4rem 1rem; font-size: 0.75rem; display: flex; justify-content: space-between; align-items: center; }
+.amazon-in-body { padding: 1.25rem; background: #f7f8f8; color: #0f1111; min-height: 380px; }
 
-.amazon-in-logo {
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-}
-
-.amazon-in-logo span { color: var(--amazon-in-orange); }
-
-.amazon-in-search-bar {
-  display: flex;
-  flex: 1;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.amazon-in-search-input {
-  flex: 1;
-  padding: 0.5rem 0.85rem;
-  border: none;
-  font-size: 0.85rem;
-  outline: none;
-  color: #000000;
-}
-
-.amazon-in-search-btn {
-  background: var(--amazon-in-yellow);
-  border: none;
-  padding: 0 0.85rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-/* Amazon.in Subnav / Pincode Bar */
-.amazon-in-subnav {
-  background: var(--amazon-in-subnav);
-  color: #ffffff;
-  padding: 0.4rem 1rem;
-  font-size: 0.75rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Amazon.in Search Results Body */
-.amazon-in-body {
-  padding: 1.25rem;
-  background: #f7f8f8;
-  color: #0f1111;
-  min-height: 380px;
-}
-
-.amazon-result-row {
-  background: #ffffff;
-  border: 1px solid #e7e7e7;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  transition: all var(--transition-normal);
-  position: relative;
-}
-
-.amazon-result-row.active-target {
-  border: 2px solid var(--gold-primary);
-  box-shadow: 0 0 28px var(--gold-glow-strong);
-  background: #fffdf5;
-  transform: scale(1.02);
-}
-
-.amazon-sponsored-label {
-  font-size: 0.6875rem;
-  color: var(--amazon-in-muted);
-  font-family: var(--font-sans);
-  font-weight: 600;
-}
-
-.amazon-item-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--amazon-in-blue-link);
-  line-height: 1.35;
-  margin-top: 0.2rem;
-}
-
-.amazon-rating-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.8rem;
-  color: #de7921;
-  margin-top: 0.35rem;
-}
-
-.amazon-price-tag {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #0f1111;
-  margin-top: 0.35rem;
-}
-
-.amazon-add-btn {
-  background: var(--amazon-in-button);
-  border: 1px solid var(--amazon-in-button-border);
-  border-radius: 20px;
-  padding: 0.4rem 1rem;
-  font-size: 0.78125rem;
-  font-weight: 700;
-  color: #0f1111;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  display: inline-block;
-}
+.amazon-result-row { background: #ffffff; border: 1px solid #e7e7e7; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center; transition: all var(--transition-normal); position: relative; }
+.amazon-result-row.active-target { border: 2px solid var(--gold-primary); box-shadow: 0 0 28px var(--gold-glow-strong); background: #fffdf5; transform: scale(1.02); }
+.amazon-sponsored-label { font-size: 0.6875rem; color: #565959; font-family: var(--font-sans); font-weight: 600; }
+.amazon-item-title { font-size: 0.95rem; font-weight: 700; color: #007185; line-height: 1.35; margin-top: 0.2rem; }
+.amazon-rating-bar { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: #de7921; margin-top: 0.35rem; }
+.amazon-price-tag { font-size: 1.2rem; font-weight: 800; color: #0f1111; margin-top: 0.35rem; }
+.amazon-add-btn { background: #ffd814; border: 1px solid #fcd200; border-radius: 20px; padding: 0.4rem 1rem; font-size: 0.78125rem; font-weight: 700; color: #0f1111; cursor: pointer; margin-top: 0.5rem; display: inline-block; }
 
 /* COMPARISON MATRIX TABLE */
 .comparison-section { padding: 6.5rem 0; }
-.comparison-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  border: 1px solid var(--gold-border-active);
-  background: rgba(14, 12, 9, 0.85);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
-}
-
-.comparison-table th, .comparison-table td {
-  padding: 1.25rem 1.5rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-  font-size: 0.95rem;
-}
-
-.comparison-table th {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  background: rgba(20, 17, 13, 0.95);
-  color: var(--text-primary);
-}
-
-.comparison-table th.highlight-col {
-  background: rgba(212, 175, 55, 0.15);
-  color: var(--gold-bright);
-  border-bottom: 2px solid var(--gold-primary);
-}
-
-.comparison-table td.highlight-col {
-  background: rgba(212, 175, 55, 0.05);
-  font-weight: 600;
-  color: #ffffff;
-}
+.comparison-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--gold-border-active); background: rgba(14, 12, 9, 0.85); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+.comparison-table th, .comparison-table td { padding: 1.25rem 1.5rem; text-align: left; border-bottom: 1px solid rgba(212, 175, 55, 0.1); font-size: 0.95rem; }
+.comparison-table th { font-family: var(--font-serif); font-size: 1.25rem; background: rgba(20, 17, 13, 0.95); color: var(--text-primary); }
+.comparison-table th.highlight-col { background: rgba(212, 175, 55, 0.15); color: var(--gold-bright); border-bottom: 2px solid var(--gold-primary); }
+.comparison-table td.highlight-col { background: rgba(212, 175, 55, 0.05); font-weight: 600; color: #ffffff; }
 
 /* TRACK RECORD STATS */
 .stats-panel-box { padding: 2rem 1.5rem; background: rgba(18, 15, 12, 0.75); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); }
