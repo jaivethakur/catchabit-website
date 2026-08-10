@@ -1,9 +1,9 @@
 /**
- * CATCHABIT SOLUTIONS — ULTRA-RICH ANIMATION ENGINE & PARTICLES
+ * CATCHABIT SOLUTIONS — AUTHENTIC AMAZON.IN PLACEMENT ENGINE & PARTICLES
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Interactive Particle Canvas Background
+  // 1. Particle Canvas Background
   const canvas = document.createElement('canvas');
   canvas.id = 'particleCanvas';
   document.body.prepend(canvas);
@@ -66,29 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     spotlight.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
   });
 
-  // 3. 3D Tilt Effect on Glass Cards
-  const tiltCards = document.querySelectorAll('.glass-card, .serp-mockup-card, .amazon-console-wrapper');
-  tiltCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = (y - centerY) / 25;
-      const rotateY = (centerX - x) / 25;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-    });
-  });
-
-  // 4. Navbar Scroll Effect
+  // 3. Navbar Scroll Effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
@@ -98,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 5. Mobile Navigation Menu Toggle
+  // 4. Mobile Navigation Menu Toggle
   const mobileToggle = document.querySelector('.mobile-toggle');
   const mobileOverlay = document.querySelector('.mobile-nav-overlay');
   const mobileLinks = document.querySelectorAll('.mobile-nav-link');
@@ -117,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. AUTHENTIC AMAZON ADVERTISING DEMO CONSOLE ENGINE
+  // 5. AUTHENTIC AMAZON ADVERTISING DEMO CONSOLE ENGINE
   const amazonConsoleTabs = document.querySelectorAll('.amazon-tab');
   const amzAdPreviewPanel = document.getElementById('amzAdPreviewPanel');
   const bidBoostSlider = document.getElementById('bidBoostSlider');
@@ -242,11 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bidBoostSlider) {
     bidBoostSlider.addEventListener('input', (e) => {
       const val = parseInt(e.target.value, 10);
-      const boostPercent = Math.round(val * 3.5); // 0% to +350%
+      const boostPercent = Math.round(val * 3.5);
 
       bidBoostVal.textContent = `+${boostPercent}% Placement Boost`;
 
-      // Recalculate metrics dynamically
       const sales = (18.5 + (val * 0.28)).toFixed(1);
       const acos = (22.4 - (val * 0.12)).toFixed(1);
       const roas = (4.46 + (val * 0.045)).toFixed(2);
@@ -259,11 +236,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. AUTHENTIC AMAZON PLACEMENT MULTIPLIER SELECTOR
+  // 6. AUTHENTIC AMAZON.IN PLACEMENT SELECTOR
   const placementBtns = document.querySelectorAll('.placement-btn');
-  const placementSlotTop = document.getElementById('placementSlotTop');
-  const placementSlotDetail = document.getElementById('placementSlotDetail');
-  const placementSlotRest = document.getElementById('placementSlotRest');
+  const amzRowTop = document.getElementById('amzRowTop');
+  const amzRowDetail = document.getElementById('amzRowDetail');
 
   placementBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -272,17 +248,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const target = btn.dataset.placement;
 
-      [placementSlotTop, placementSlotDetail, placementSlotRest].forEach(slot => {
-        if (slot) slot.classList.remove('active-target');
-      });
+      if (amzRowTop) amzRowTop.classList.remove('active-target');
+      if (amzRowDetail) amzRowDetail.classList.remove('active-target');
 
-      if (target === 'top' && placementSlotTop) placementSlotTop.classList.add('active-target');
-      if (target === 'detail' && placementSlotDetail) placementSlotDetail.classList.add('active-target');
-      if (target === 'rest' && placementSlotRest) placementSlotRest.classList.add('active-target');
+      if (target === 'top' && amzRowTop) {
+        amzRowTop.classList.add('active-target');
+      } else if (target === 'detail' && amzRowDetail) {
+        amzRowDetail.classList.add('active-target');
+      }
     });
   });
 
-  // 8. Scroll Reveal Observer
+  // 7. Scroll Reveal Observer
   const revealElements = document.querySelectorAll('.reveal-up, .section-divider');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -294,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // 9. Animated Counter Observer
+  // 8. Animated Counter Observer
   const statValues = document.querySelectorAll('.stat-value');
   let animated = false;
 
@@ -332,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultsSection = document.getElementById('results');
   if (resultsSection) statsObserver.observe(resultsSection);
 
-  // 10. FAQ Accordion Engine
+  // 9. FAQ Accordion Engine
   const faqQuestions = document.querySelectorAll('.faq-question');
   faqQuestions.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -351,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 11. Live Activity Toast Ticker Engine
+  // 10. Live Activity Toast Ticker Engine
   const toast = document.getElementById('activityToast');
   const toastText = document.getElementById('toastText');
 
@@ -379,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 9000);
   }
 
-  // 12. Web3Forms Audit Form AJAX Handler
+  // 11. Web3Forms Audit Form AJAX Handler
   const auditForm = document.getElementById('auditForm');
   const formStatus = document.getElementById('formStatus');
 
