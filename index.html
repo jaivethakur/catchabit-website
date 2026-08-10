@@ -41,7 +41,7 @@
         <svg class="brand-crest" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="50" cy="50" r="45" stroke="#d4af37" stroke-width="3" stroke-dasharray="3 3"/>
           <circle cx="50" cy="50" r="36" stroke="#8c7126" stroke-width="1.5"/>
-          <polygon points="50,20 58,42 80,50 58,58 50,80 42,58 20,50 42,42" fill="#d4af37"/>
+          <polygon points="50,20 58,42 80,50 58,58 50,78 42,58 20,50 42,42" fill="#d4af37"/>
           <circle cx="50" cy="50" r="6" fill="#050403"/>
         </svg>
         <div>
@@ -89,7 +89,7 @@
   </div>
 
   <main>
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION & AUTHENTIC AMAZON AD CONSOLE SUITE -->
     <section class="hero" id="hero">
       <div class="container">
         <div class="hero-grid">
@@ -121,69 +121,82 @@
             </div>
           </div>
 
-          <!-- DEMO CONSOLE CARD -->
+          <!-- AUTHENTIC AMAZON ADVERTISING CONSOLE CARD -->
           <div class="hero-console-container reveal-up" style="transition-delay: 150ms;">
-            <div class="demo-console-card glass-panel float-levitate">
-              <div class="console-top-bar">
-                <div class="console-tab-group">
-                  <button class="console-tab active" data-channel="all">ALL</button>
-                  <button class="console-tab" data-channel="sp">SP</button>
-                  <button class="console-tab" data-channel="sb">SB</button>
-                  <button class="console-tab" data-channel="sd">SD</button>
-                  <button class="console-tab" data-channel="dsp">DSP</button>
+            <div class="amazon-console-wrapper float-levitate">
+              <div class="amazon-console-nav">
+                <div class="amazon-console-logo">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff9900" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                  <span>amazon <span>advertising</span></span>
                 </div>
-                <div class="console-live-tag">
-                  <span class="live-dot"></span>
-                  <span>LIVE DEMO SIMULATOR</span>
+                <div class="amazon-account-meta">CatchAbit Agency Console • INR (₹)</div>
+              </div>
+
+              <!-- Real Amazon Campaign Tabs -->
+              <div class="amazon-console-tabs" id="amazonConsoleTabs">
+                <button class="amazon-tab active" data-adtype="sp">Sponsored Products (SP)</button>
+                <button class="amazon-tab" data-adtype="sb">Sponsored Brands (SB)</button>
+                <button class="amazon-tab" data-adtype="sbv">SB Video (SBV)</button>
+                <button class="amazon-tab" data-adtype="sd">Sponsored Display (SD)</button>
+              </div>
+
+              <!-- Real Amazon Advertising Metrics Bar -->
+              <div class="amazon-metric-bar">
+                <div class="amazon-metric-card">
+                  <div class="lbl">Ad Sales</div>
+                  <div class="val" id="amzSales">₹24,80,000</div>
+                  <div class="sub">+48.2% YoY</div>
+                </div>
+
+                <div class="amazon-metric-card">
+                  <div class="lbl">ACoS</div>
+                  <div class="val" id="amzAcos">13.8%</div>
+                  <div class="sub">-7.4% Saved</div>
+                </div>
+
+                <div class="amazon-metric-card">
+                  <div class="lbl">ROAS</div>
+                  <div class="val" id="amzRoas">7.23x</div>
+                  <div class="sub">Optimized</div>
+                </div>
+
+                <div class="amazon-metric-card">
+                  <div class="lbl">Avg CPC</div>
+                  <div class="val" id="amzCpc">₹13.04</div>
+                  <div class="sub">Controlled</div>
                 </div>
               </div>
 
-              <div class="simulator-control-box">
-                <div class="sim-slider-header">
-                  <span class="sim-slider-label">Simulate CatchAbit Algorithmic Optimization</span>
-                  <span class="sim-slider-val" id="sliderValLabel">+60% Optimization</span>
-                </div>
-                <input type="range" id="bidSlider" class="range-slider" min="0" max="100" value="60" aria-label="Simulate optimization level">
-              </div>
-
-              <div class="console-metric-grid">
-                <div class="console-metric-box">
-                  <div class="console-metric-lbl">Ad Sales</div>
-                  <div class="console-metric-num" id="metricSales">₹44.2L</div>
-                  <div class="console-metric-sub">+48% Growth</div>
-                </div>
-
-                <div class="console-metric-box">
-                  <div class="console-metric-lbl">ACoS</div>
-                  <div class="console-metric-num" id="metricAcos">14.8%</div>
-                  <div class="console-metric-sub">-8.4% Saved</div>
-                </div>
-
-                <div class="console-metric-box">
-                  <div class="console-metric-lbl">Blended ROAS</div>
-                  <div class="console-metric-num" id="metricRoas">6.75x</div>
-                  <div class="console-metric-sub">Optimized</div>
-                </div>
-
-                <div class="console-metric-box">
-                  <div class="console-metric-lbl">TACoS</div>
-                  <div class="console-metric-num" id="metricTacos">7.9%</div>
-                  <div class="console-metric-sub">Target Met</div>
+              <!-- AUTHENTIC AMAZON AD PREVIEW CONTAINER -->
+              <div class="amazon-ad-preview-panel" id="amzAdPreviewPanel">
+                <div class="sp-product-ad-card">
+                  <span class="sp-tag-badge">SPONSORED PRODUCT (TOP OF SEARCH #1)</span>
+                  <div class="sp-product-img">
+                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                  </div>
+                  <div class="sp-product-info">
+                    <h4>CatchAbit Client Premium Herbal Oil (200ml)</h4>
+                    <div class="sp-rating-row">
+                      <span>★ ★ ★ ★ ★ 4.8</span>
+                      <span style="color: #8c9ba5;">(1,420 ratings)</span>
+                    </div>
+                    <div class="sp-price-row">
+                      <span class="sp-price">₹499</span>
+                      <span class="prime-badge">✓prime</span>
+                      <span style="font-size: 0.75rem; color: var(--success-green); font-family: var(--font-mono);">Keyword Match: EXACT (Placement Multiplier +185%)</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <svg class="console-svg-chart" viewBox="0 0 600 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="demoGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#f7df8b" stop-opacity="0.35" />
-                    <stop offset="100%" stop-color="#d4af37" stop-opacity="0.0" />
-                  </linearGradient>
-                </defs>
-                <line x1="20" y1="40" x2="580" y2="40" stroke="rgba(212,175,55,0.1)" stroke-dasharray="4 4" />
-                <line x1="20" y1="90" x2="580" y2="90" stroke="rgba(212,175,55,0.1)" stroke-dasharray="4 4" />
-                <line x1="20" y1="140" x2="580" y2="140" stroke="rgba(212,175,55,0.1)" stroke-dasharray="4 4" />
-                <path id="dynamicChartPath" class="dynamic-chart-path" d="M 20 140 Q 100 100, 180 80 T 340 50 T 480 30 T 580 15 L 580 160 L 20 160 Z" />
-              </svg>
+              <!-- Interactive Bid Optimization Slider -->
+              <div class="bid-slider-box">
+                <div class="bid-slider-header">
+                  <span>Top of Search Bid Boost (0% → +900%)</span>
+                  <span class="val" id="bidBoostVal">+185% Placement Boost</span>
+                </div>
+                <input type="range" id="bidBoostSlider" class="range-slider" min="0" max="100" value="65" aria-label="Simulate placement bid boost">
+              </div>
             </div>
           </div>
         </div>
@@ -241,14 +254,14 @@
     <!-- Section Divider -->
     <div class="section-divider"></div>
 
-    <!-- PLACEMENT SIMULATOR SECTION -->
+    <!-- AUTHENTIC AMAZON PLACEMENT BID ADJUSTMENT SIMULATOR -->
     <section class="placement-section" id="placement">
       <div class="container">
         <div class="placement-grid">
           <div class="placement-content reveal-up">
-            <div class="eyebrow"><span class="dot"></span> <span>PLACEMENT MULTIPLIER TECH</span></div>
+            <div class="eyebrow"><span class="dot"></span> <span>AMAZON CAMPAIGN MANAGER TECH</span></div>
             <h2>Dominating Amazon's Top of Search Placements.</h2>
-            <p>Top of Search (First Page) converts at 3x–5x higher rate than Rest of Search or Detail Pages. Click the placement targets below to simulate bid multipliers in action:</p>
+            <p>Amazon allows bid boosts up to <strong>+900%</strong> for Top of Search (First Page). Click below to simulate actual Amazon Campaign Manager placement adjustments:</p>
 
             <div class="placement-btn-group">
               <button class="placement-btn active" data-placement="top">
@@ -256,48 +269,62 @@
                   <span>Top of Search (First Page)</span>
                   <span style="font-family: var(--font-mono); color: var(--gold-bright);">+185% Multiplier</span>
                 </div>
-                <div class="placement-btn-subtitle">Captures 78.4% impression share on high-converting exact match keywords.</div>
+                <div class="placement-btn-subtitle">Captures #1-4 position on high-converting Amazon search queries (3x–5x CTR).</div>
               </button>
 
               <button class="placement-btn" data-placement="detail">
                 <div class="placement-btn-title">
                   <span>Product Detail Pages</span>
-                  <span style="font-family: var(--font-mono); color: var(--gold-bright);">+35% Multiplier</span>
+                  <span style="font-family: var(--font-mono); color: var(--gold-bright);">+45% Multiplier</span>
                 </div>
-                <div class="placement-btn-subtitle">Cross-selling across your catalog & competitor ASIN detail page conquesting.</div>
+                <div class="placement-btn-subtitle">Appears on competitor detail pages right below the Amazon Buy Box ("Add to Cart").</div>
               </button>
 
               <button class="placement-btn" data-placement="rest">
                 <div class="placement-btn-title">
                   <span>Rest of Search (Page 2+)</span>
-                  <span style="font-family: var(--font-mono); color: var(--text-muted);">0% Multiplier</span>
+                  <span style="font-family: var(--font-mono); color: var(--text-muted);">0% Base Bid</span>
                 </div>
-                <div class="placement-btn-subtitle">Low-intent pages filtered out to eliminate budget leakage.</div>
+                <div class="placement-btn-subtitle">Base bids filtered out to eliminate low-intent budget waste.</div>
               </button>
             </div>
           </div>
 
+          <!-- AUTHENTIC AMAZON SERP & DETAIL PAGE PREVIEW MOCKUP -->
           <div class="placement-mockup-container reveal-up" style="transition-delay: 150ms;">
             <div class="serp-mockup-card glass-panel">
               <div class="serp-header">
-                <span>SIMULATED AMAZON SEARCH RESULTS PAGE</span>
-                <span>KEYWORD: "ORGANIC SUPPLEMENTS"</span>
+                <span>AUTHENTIC AMAZON SEARCH PREVIEW (amazon.in)</span>
+                <span style="color: var(--amazon-orange);">KEYWORD: "HAIR SERUM"</span>
               </div>
 
-              <div class="serp-ad-slot active-target" data-slot="top">
-                <span class="serp-ad-badge">SPONSORED BRAND TOP SPOT</span>
-                <div style="font-weight: 700; color: var(--text-primary); font-size: 1.05rem; margin-top: 0.2rem;">CatchAbit Client Premium Brand Store Ad</div>
-                <div style="font-size: 0.85rem; color: var(--success-green); margin-top: 0.2rem;">★ ★ ★ ★ ★ (4.8) · Prime 1-Day Delivery · High CTR Placement</div>
+              <!-- Top of Search #1 Spot Mockup -->
+              <div class="serp-ad-slot active-target" data-slot="top" id="placementSlotTop">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span class="serp-ad-badge" style="background: #ff9900; color: #000;">SPONSORED BRAND #1 SPOT</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--success-green);">Placement Win • CTR 4.8%</span>
+                </div>
+                <div style="font-weight: 700; color: #ffffff; font-size: 1.05rem;">CatchAbit Client Brand Store: Pure Hair Care</div>
+                <div style="font-size: 0.85rem; color: #ffb703; margin-top: 0.25rem;">★ ★ ★ ★ ★ (1,420) · Prime 1-Day Delivery</div>
               </div>
 
-              <div class="serp-ad-slot" data-slot="detail">
-                <span class="serp-ad-badge" style="background: var(--amazon-blue);">SPONSORED DISPLAY DETAIL SLOT</span>
-                <div style="font-weight: 600; color: var(--text-primary); font-size: 0.95rem; margin-top: 0.2rem;">Competitor ASIN Defense Banner Placement</div>
+              <!-- Product Detail Page Slot Mockup -->
+              <div class="serp-ad-slot" data-slot="detail" id="placementSlotDetail">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span class="serp-ad-badge" style="background: #00a8e8; color: #fff;">PRODUCT DETAIL PAGE BUY BOX SLOT</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold-bright);">Competitor ASIN Defense</span>
+                </div>
+                <div style="font-weight: 600; color: #ffffff; font-size: 0.95rem;">Positioned Under Competitor Buy Box</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">Captures shoppers looking at competing ASINs</div>
               </div>
 
-              <div class="serp-ad-slot" data-slot="rest">
-                <span class="serp-ad-badge" style="background: var(--text-dim); color: #fff;">REST OF SEARCH (PAGE 2)</span>
-                <div style="font-size: 0.85rem; color: var(--text-muted);">Low Bid Filtered Slot</div>
+              <!-- Rest of Search Page 2+ Slot Mockup -->
+              <div class="serp-ad-slot" data-slot="rest" id="placementSlotRest">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span class="serp-ad-badge" style="background: #475569; color: #fff;">REST OF SEARCH (PAGE 2)</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">Standard Base Bid</span>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Low-intent search impressions filtered</div>
               </div>
             </div>
           </div>

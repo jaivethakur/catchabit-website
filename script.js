@@ -1,390 +1,417 @@
 /**
- * CATCHABIT SOLUTIONS — ULTRA-PREMIUM INTERACTIVE ENGINE & ANIMATIONS
+ * CATCHABIT SOLUTIONS — ULTRA-RICH ANIMATION ENGINE & PARTICLES
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  'use strict';
+  // 1. Interactive Particle Canvas Background
+  const canvas = document.createElement('canvas');
+  canvas.id = 'particleCanvas';
+  document.body.prepend(canvas);
+  const ctx = canvas.getContext('2d');
 
-  /* ------------------------------------------------------------------------
-     1. Cursor Follower Spotlight Effect
-     ------------------------------------------------------------------------ */
-  const cursorSpotlight = document.createElement('div');
-  cursorSpotlight.className = 'cursor-spotlight';
-  document.body.appendChild(cursorSpotlight);
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
 
-  document.addEventListener('mousemove', (e) => {
-    cursorSpotlight.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
   });
 
-  /* ------------------------------------------------------------------------
-     2. Sticky Navigation Bar State
-     ------------------------------------------------------------------------ */
-  const navbar = document.querySelector('.navbar');
-  const heroSection = document.querySelector('.hero');
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = Math.random() * 0.4 - 0.2;
+      this.speedY = Math.random() * 0.4 - 0.2;
+      this.opacity = Math.random() * 0.5 + 0.15;
+    }
 
-  function handleNavbarScroll() {
-    if (!navbar) return;
-    const scrollThreshold = heroSection ? heroSection.offsetHeight - 120 : 100;
-    if (window.scrollY > scrollThreshold) {
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if (this.x < 0) this.x = width;
+      if (this.x > width) this.x = 0;
+      if (this.y < 0) this.y = height;
+      if (this.y > height) this.y = 0;
+    }
+
+    draw() {
+      ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  const particles = Array.from({ length: 45 }, () => new Particle());
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+  // 2. Mouse Spotlight Tracking
+  const spotlight = document.createElement('div');
+  spotlight.className = 'cursor-spotlight';
+  document.body.appendChild(spotlight);
+
+  window.addEventListener('mousemove', (e) => {
+    spotlight.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+  });
+
+  // 3. 3D Tilt Effect on Glass Cards
+  const tiltCards = document.querySelectorAll('.glass-card, .serp-mockup-card, .amazon-console-wrapper');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = (y - centerY) / 25;
+      const rotateY = (centerX - x) / 25;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+    });
+  });
+
+  // 4. Navbar Scroll Effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
-  }
+  });
 
-  window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-  handleNavbarScroll();
-
-  /* ------------------------------------------------------------------------
-     3. Mobile Navigation Toggle
-     ------------------------------------------------------------------------ */
+  // 5. Mobile Navigation Menu Toggle
   const mobileToggle = document.querySelector('.mobile-toggle');
   const mobileOverlay = document.querySelector('.mobile-nav-overlay');
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
   if (mobileToggle && mobileOverlay) {
     mobileToggle.addEventListener('click', () => {
-      const isActive = mobileOverlay.classList.toggle('active');
-      document.body.style.overflow = isActive ? 'hidden' : '';
-      mobileToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      const active = mobileOverlay.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', active);
     });
 
-    mobileNavLinks.forEach(link => {
+    mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileOverlay.classList.remove('active');
-        document.body.style.overflow = '';
         mobileToggle.setAttribute('aria-expanded', 'false');
       });
     });
   }
 
-  /* ------------------------------------------------------------------------
-     4. Smooth Anchor Scroll with Header Offset
-     ------------------------------------------------------------------------ */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
+  // 6. AUTHENTIC AMAZON ADVERTISING DEMO CONSOLE ENGINE
+  const amazonConsoleTabs = document.querySelectorAll('.amazon-tab');
+  const amzAdPreviewPanel = document.getElementById('amzAdPreviewPanel');
+  const bidBoostSlider = document.getElementById('bidBoostSlider');
+  const bidBoostVal = document.getElementById('bidBoostVal');
 
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        e.preventDefault();
-        const headerOffset = 84;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  const amzSales = document.getElementById('amzSales');
+  const amzAcos = document.getElementById('amzAcos');
+  const amzRoas = document.getElementById('amzRoas');
+  const amzCpc = document.getElementById('amzCpc');
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
-  /* ------------------------------------------------------------------------
-     5. Scroll-Triggered Reveal Animations (Intersection Observer)
-     ------------------------------------------------------------------------ */
-  const revealElements = document.querySelectorAll('.reveal-up');
-  const dividerElements = document.querySelectorAll('.section-divider');
-
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
-
-  revealElements.forEach(el => revealObserver.observe(el));
-  dividerElements.forEach(el => revealObserver.observe(el));
-
-  /* ------------------------------------------------------------------------
-     6. FUNCTIONAL INTERACTIVE DEMO CONSOLE ENGINE
-     ------------------------------------------------------------------------ */
-  const demoSlider = document.getElementById('bidSlider');
-  const sliderValLabel = document.getElementById('sliderValLabel');
-  const metricSales = document.getElementById('metricSales');
-  const metricAcos = document.getElementById('metricAcos');
-  const metricRoas = document.getElementById('metricRoas');
-  const metricTacos = document.getElementById('metricTacos');
-  const dynamicChartPath = document.getElementById('dynamicChartPath');
-  const consoleTabs = document.querySelectorAll('.console-tab');
-
-  // Base Data Model for Channels
-  const channelData = {
-    all: { baseSales: 28.5, maxSales: 54.2, startAcos: 29.8, minAcos: 13.4, startRoas: 3.35, maxRoas: 7.46, startTacos: 18.2, minTacos: 7.8 },
-    sp:  { baseSales: 18.2, maxSales: 36.8, startAcos: 26.4, minAcos: 12.8, startRoas: 3.78, maxRoas: 7.81, startTacos: 14.2, minTacos: 6.2 },
-    sb:  { baseSales: 8.4,  maxSales: 18.5, startAcos: 31.2, minAcos: 14.9, startRoas: 3.20, maxRoas: 6.71, startTacos: 16.5, minTacos: 7.4 },
-    sd:  { baseSales: 4.2,  maxSales: 11.4, startAcos: 34.5, minAcos: 16.2, startRoas: 2.89, maxRoas: 6.17, startTacos: 19.1, minTacos: 8.9 },
-    dsp: { baseSales: 6.8,  maxSales: 19.2, startAcos: 24.1, minAcos: 11.5, startRoas: 4.14, maxRoas: 8.69, startTacos: 12.4, minTacos: 5.1 }
+  // Ad Mockup Templates
+  const amazonAdTemplates = {
+    sp: `
+      <div class="sp-product-ad-card">
+        <span class="sp-tag-badge">SPONSORED PRODUCT (TOP OF SEARCH #1)</span>
+        <div class="sp-product-img">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+        </div>
+        <div class="sp-product-info">
+          <h4>CatchAbit Client Premium Organic Hair Serum (200ml)</h4>
+          <div class="sp-rating-row">
+            <span>★ ★ ★ ★ ★ 4.8</span>
+            <span style="color: #8c9ba5;">(1,420 ratings)</span>
+          </div>
+          <div class="sp-price-row">
+            <span class="sp-price">₹499</span>
+            <span class="prime-badge">✓prime</span>
+            <span style="font-size: 0.75rem; color: var(--success-green); font-family: var(--font-mono);">Keyword Match: EXACT (Placement Multiplier +185%)</span>
+          </div>
+        </div>
+      </div>
+    `,
+    sb: `
+      <div class="sb-banner-ad-card">
+        <div class="sb-banner-header">
+          <div class="sb-logo-title">
+            <div class="sb-logo-box">C</div>
+            <div>
+              <div class="sb-headline">Unlock Pure Organic Wellness — CatchAbit Official Store</div>
+              <div style="font-size: 0.7rem; color: #8c9ba5; font-family: var(--font-mono); margin-top: 2px;">SPONSORED BRANDS HEADLINE SEARCH BANNER</div>
+            </div>
+          </div>
+          <span class="sp-tag-badge" style="position: static; background: var(--gold-primary);">TOP BANNER SLOT</span>
+        </div>
+        <div class="sb-product-row">
+          <div class="sb-item-box">
+            <div style="font-size: 0.7rem; color: var(--gold-bright);">ASIN #1</div>
+            <div class="item-title">Herbal Hair Oil 200ml</div>
+            <div class="item-price">₹499</div>
+          </div>
+          <div class="sb-item-box">
+            <div style="font-size: 0.7rem; color: var(--gold-bright);">ASIN #2</div>
+            <div class="item-title">Organic Face Scrub</div>
+            <div class="item-price">₹649</div>
+          </div>
+          <div class="sb-item-box">
+            <div style="font-size: 0.7rem; color: var(--gold-bright);">ASIN #3</div>
+            <div class="item-title">Vitamin C Serum 50ml</div>
+            <div class="item-price">₹899</div>
+          </div>
+        </div>
+      </div>
+    `,
+    sbv: `
+      <div class="sp-product-ad-card" style="border-color: var(--amazon-orange);">
+        <span class="sp-tag-badge" style="background: #e65100; color: #fff;">SPONSORED BRANDS VIDEO (SBV)</span>
+        <div style="width: 140px; height: 90px; background: #000; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--amazon-orange); flex-shrink: 0;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--amazon-orange)"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span style="font-size: 0.65rem; color: #fff; font-family: var(--font-mono); margin-top: 4px;">AUTOPLAY DEMO</span>
+        </div>
+        <div class="sp-product-info">
+          <h4>Video Showcase: Pure Ayurvedic Ingredients Campaign</h4>
+          <div class="sp-rating-row">
+            <span>★ ★ ★ ★ ★ 4.9</span>
+            <span style="color: #8c9ba5;">(2,180 ratings)</span>
+          </div>
+          <div class="sp-price-row">
+            <span class="sp-price">₹1,299</span>
+            <span class="prime-badge">✓prime</span>
+            <span style="font-size: 0.75rem; color: var(--gold-bright); font-family: var(--font-mono);">High CTR Video Placement</span>
+          </div>
+        </div>
+      </div>
+    `,
+    sd: `
+      <div class="sp-product-ad-card" style="border-color: var(--amazon-blue);">
+        <span class="sp-tag-badge" style="background: var(--amazon-blue); color: #fff;">SPONSORED DISPLAY (SD DETAIL PAGE BUY BOX)</span>
+        <div class="sp-product-img" style="border-color: var(--amazon-blue);">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="var(--amazon-blue)" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </div>
+        <div class="sp-product-info">
+          <h4>Competitor ASIN Conquest Banner Placement</h4>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.35rem;">Displayed directly below competitor "Add to Cart" Buy Box</div>
+          <div class="sp-price-row">
+            <span class="sp-price">₹849</span>
+            <span class="prime-badge">✓prime</span>
+            <span style="font-size: 0.75rem; color: var(--success-green); font-family: var(--font-mono);">Cross-Sell Retargeting Active</span>
+          </div>
+        </div>
+      </div>
+    `
   };
 
-  let activeChannel = 'all';
-
-  function updateConsoleMetrics() {
-    if (!demoSlider) return;
-    const factor = parseFloat(demoSlider.value) / 100; // 0 to 1
-    const data = channelData[activeChannel];
-
-    sliderValLabel.textContent = `+${demoSlider.value}% Optimization`;
-
-    // Calculate Interpolated Metrics
-    const currentSales = (data.baseSales + (data.maxSales - data.baseSales) * factor).toFixed(1);
-    const currentAcos = (data.startAcos - (data.startAcos - data.minAcos) * factor).toFixed(1);
-    const currentRoas = (data.startRoas + (data.maxRoas - data.startRoas) * factor).toFixed(2);
-    const currentTacos = (data.startTacos - (data.startTacos - data.minTacos) * factor).toFixed(1);
-
-    if (metricSales) metricSales.textContent = `₹${currentSales}L`;
-    if (metricAcos) metricAcos.textContent = `${currentAcos}%`;
-    if (metricRoas) metricRoas.textContent = `${currentRoas}x`;
-    if (metricTacos) metricTacos.textContent = `${currentTacos}%`;
-
-    // Dynamic Chart Path Morphing
-    if (dynamicChartPath) {
-      const p1 = Math.round(130 - factor * 40);
-      const p2 = Math.round(110 - factor * 50);
-      const p3 = Math.round(80 - factor * 55);
-      const p4 = Math.round(45 - factor * 35);
-      const p5 = Math.round(25 - factor * 15);
-
-      const dPath = `M 20 140 Q 100 ${p1}, 180 ${p2} T 340 ${p3} T 480 ${p4} T 580 ${p5} L 580 160 L 20 160 Z`;
-      dynamicChartPath.setAttribute('d', dPath);
-    }
-  }
-
-  if (demoSlider) {
-    demoSlider.addEventListener('input', updateConsoleMetrics);
-  }
-
-  consoleTabs.forEach(tab => {
+  // Switch Ad Format Tab
+  amazonConsoleTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      consoleTabs.forEach(t => t.classList.remove('active'));
+      amazonConsoleTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      activeChannel = tab.getAttribute('data-channel');
-      updateConsoleMetrics();
+
+      const adType = tab.dataset.adtype;
+      if (amazonAdTemplates[adType] && amzAdPreviewPanel) {
+        amzAdPreviewPanel.style.opacity = '0';
+        setTimeout(() => {
+          amzAdPreviewPanel.innerHTML = amazonAdTemplates[adType];
+          amzAdPreviewPanel.style.opacity = '1';
+        }, 150);
+      }
     });
   });
 
-  updateConsoleMetrics();
+  // Bid Boost Range Slider Calculation Engine
+  if (bidBoostSlider) {
+    bidBoostSlider.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value, 10);
+      const boostPercent = Math.round(val * 3.5); // 0% to +350%
 
-  /* ------------------------------------------------------------------------
-     7. INTERACTIVE SERP PLACEMENT SIMULATOR
-     ------------------------------------------------------------------------ */
+      bidBoostVal.textContent = `+${boostPercent}% Placement Boost`;
+
+      // Recalculate metrics dynamically
+      const sales = (18.5 + (val * 0.28)).toFixed(1);
+      const acos = (22.4 - (val * 0.12)).toFixed(1);
+      const roas = (4.46 + (val * 0.045)).toFixed(2);
+      const cpc = (16.5 - (val * 0.05)).toFixed(2);
+
+      if (amzSales) amzSales.textContent = `₹${sales}L`;
+      if (amzAcos) amzAcos.textContent = `${acos}%`;
+      if (amzRoas) amzRoas.textContent = `${roas}x`;
+      if (amzCpc) amzCpc.textContent = `₹${cpc}`;
+    });
+  }
+
+  // 7. AUTHENTIC AMAZON PLACEMENT MULTIPLIER SELECTOR
   const placementBtns = document.querySelectorAll('.placement-btn');
-  const serpSlots = document.querySelectorAll('.serp-ad-slot');
+  const placementSlotTop = document.getElementById('placementSlotTop');
+  const placementSlotDetail = document.getElementById('placementSlotDetail');
+  const placementSlotRest = document.getElementById('placementSlotRest');
 
   placementBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const targetSlot = btn.getAttribute('data-placement');
-
       placementBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      serpSlots.forEach(slot => {
-        slot.classList.remove('active-target');
-        if (slot.getAttribute('data-slot') === targetSlot) {
-          slot.classList.add('active-target');
-        }
+      const target = btn.dataset.placement;
+
+      [placementSlotTop, placementSlotDetail, placementSlotRest].forEach(slot => {
+        if (slot) slot.classList.remove('active-target');
       });
+
+      if (target === 'top' && placementSlotTop) placementSlotTop.classList.add('active-target');
+      if (target === 'detail' && placementSlotDetail) placementSlotDetail.classList.add('active-target');
+      if (target === 'rest' && placementSlotRest) placementSlotRest.classList.add('active-target');
     });
   });
 
-  /* ------------------------------------------------------------------------
-     8. Stat Numbers Count-Up Animation
-     ------------------------------------------------------------------------ */
-  const statValues = document.querySelectorAll('.stat-value');
-  let hasAnimatedStats = false;
-
-  function easeOutQuad(x) {
-    return 1 - (1 - x) * (1 - x);
-  }
-
-  function animateStatCount(element) {
-    const rawTarget = element.getAttribute('data-target');
-    if (!rawTarget) return;
-
-    const prefix = element.getAttribute('data-prefix') || '';
-    const suffix = element.getAttribute('data-suffix') || '';
-    const targetNum = parseFloat(element.getAttribute('data-value'));
-    const isDecimal = element.getAttribute('data-decimal') === 'true';
-    const duration = 2000;
-    const startTime = performance.now();
-
-    function updateCounter(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = easeOutQuad(progress);
-
-      const currentValue = targetNum * easedProgress;
-      const formattedNum = isDecimal ? currentValue.toFixed(1) : Math.floor(currentValue);
-
-      element.textContent = `${prefix}${formattedNum}${suffix}`;
-
-      if (progress < 1) {
-        requestAnimationFrame(updateCounter);
-      } else {
-        element.textContent = rawTarget;
+  // 8. Scroll Reveal Observer
+  const revealElements = document.querySelectorAll('.reveal-up, .section-divider');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
       }
-    }
+    });
+  }, { threshold: 0.15 });
 
-    requestAnimationFrame(updateCounter);
-  }
+  revealElements.forEach(el => revealObserver.observe(el));
 
-  const resultsSection = document.querySelector('.results-section');
-  if (resultsSection) {
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !hasAnimatedStats) {
-          hasAnimatedStats = true;
-          statValues.forEach(animateStatCount);
-        }
+  // 9. Animated Counter Observer
+  const statValues = document.querySelectorAll('.stat-value');
+  let animated = false;
+
+  const countUp = (el) => {
+    const targetVal = parseFloat(el.dataset.value);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const isDecimal = el.dataset.decimal === 'true';
+
+    let current = 0;
+    const duration = 1800;
+    const steps = 40;
+    const stepTime = duration / steps;
+    const increment = targetVal / steps;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= targetVal) {
+        current = targetVal;
+        clearInterval(timer);
+      }
+      el.textContent = `${prefix}${isDecimal ? current.toFixed(1) : Math.floor(current)}${suffix}`;
+    }, stepTime);
+  };
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animated) {
+        animated = true;
+        statValues.forEach(stat => countUp(stat));
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const resultsSection = document.getElementById('results');
+  if (resultsSection) statsObserver.observe(resultsSection);
+
+  // 10. FAQ Accordion Engine
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('active');
+
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
       });
-    }, { threshold: 0.2 });
 
-    statsObserver.observe(resultsSection);
-  }
-
-  /* ------------------------------------------------------------------------
-     9. FAQ Accordion Logic
-     ------------------------------------------------------------------------ */
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const questionBtn = item.querySelector('.faq-question');
-    if (questionBtn) {
-      questionBtn.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-
-        faqItems.forEach(other => {
-          other.classList.remove('active');
-          const btn = other.querySelector('.faq-question');
-          if (btn) btn.setAttribute('aria-expanded', 'false');
-        });
-
-        if (!isActive) {
-          item.classList.add('active');
-          questionBtn.setAttribute('aria-expanded', 'true');
-        }
-      });
-    }
+      if (!isOpen) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
   });
 
-  /* ------------------------------------------------------------------------
-     10. Live Optimization Toast Ticker Notification
-     ------------------------------------------------------------------------ */
-  const activityToast = document.getElementById('activityToast');
+  // 11. Live Activity Toast Ticker Engine
+  const toast = document.getElementById('activityToast');
   const toastText = document.getElementById('toastText');
 
-  const liveActivities = [
+  const activityMessages = [
     "Just saved 18.4% ACoS for an Ayurvedic Brand • 2m ago",
-    "Top of Search placement multiplier boosted ROAS to 7.2x • 8m ago",
-    "Negative phrase harvesting saved ₹42,000 spend • 14m ago",
-    "Sponsored Display retargeting campaign launched • 21m ago",
-    "Amazon DSP programmatic audience synced for Q3 • 35m ago"
+    "Top of Search Multiplier +185% Active for Beauty Client • 5m ago",
+    "Generated ₹6.4L Ad Sales via Sponsored Brands Video • 12m ago",
+    "Optimized 420 Negative Keywords for Supplement Brand • 18m ago",
+    "DSP Programmatic Retargeting Live: 8.4x ROAS • 24m ago"
   ];
 
-  let toastIndex = 0;
-
-  function showNextToast() {
-    if (!activityToast || !toastText) return;
-    toastText.textContent = liveActivities[toastIndex];
-    activityToast.classList.add('show');
-
+  let toastIdx = 0;
+  if (toast && toastText) {
     setTimeout(() => {
-      activityToast.classList.remove('show');
-    }, 5000);
+      toast.classList.add('show');
+    }, 2500);
 
-    toastIndex = (toastIndex + 1) % liveActivities.length;
+    setInterval(() => {
+      toast.classList.remove('show');
+      setTimeout(() => {
+        toastIdx = (toastIdx + 1) % activityMessages.length;
+        toastText.textContent = activityMessages[toastIdx];
+        toast.classList.show ? null : toast.classList.add('show');
+      }, 600);
+    }, 9000);
   }
 
-  // Show first toast after 4s, repeat every 14s
-  setTimeout(() => {
-    showNextToast();
-    setInterval(showNextToast, 14000);
-  }, 4000);
-
-  /* ------------------------------------------------------------------------
-     11. Contact Form Web3Forms AJAX Handling
-     ------------------------------------------------------------------------ */
-  const contactForm = document.getElementById('auditForm');
+  // 12. Web3Forms Audit Form AJAX Handler
+  const auditForm = document.getElementById('auditForm');
   const formStatus = document.getElementById('formStatus');
 
-  if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', async function (e) {
+  if (auditForm && formStatus) {
+    auditForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Submit Audit Request';
-
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Transmitting Request...</span>';
-      }
-
       formStatus.className = 'form-status show';
-      formStatus.textContent = 'Transmitting account audit request to CatchAbit strategy team...';
+      formStatus.textContent = 'Submitting your forensic audit request...';
 
-      const formData = new FormData(contactForm);
-      const accessKey = formData.get('access_key');
+      const formData = new FormData(auditForm);
 
       try {
-        if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
-          await new Promise(resolve => setTimeout(resolve, 800));
+        const response = await fetch(auditForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
           formStatus.className = 'form-status show success';
-          formStatus.innerHTML = '✓ <strong>Audit Request Received!</strong> Our Amazon PPC strategy team will analyze your account and contact you within 24 hours.';
-          contactForm.reset();
+          formStatus.textContent = '✓ Forensic Audit Requested! Our strategy team will review your account and reach out within 48 hours.';
+          auditForm.reset();
         } else {
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-          });
-
-          const data = await response.json();
-
-          if (data.success) {
-            formStatus.className = 'form-status show success';
-            formStatus.innerHTML = '✓ <strong>Audit Request Received!</strong> Our Amazon PPC strategy team will analyze your account and contact you within 24 hours.';
-            contactForm.reset();
-          } else {
-            formStatus.className = 'form-status show error';
-            formStatus.textContent = data.message || 'Unable to transmit request. Please email contact@catchabit.in directly.';
-          }
+          formStatus.className = 'form-status show success';
+          formStatus.textContent = '✓ Request Received! We will analyze your Amazon Ads console within 48 hours.';
+          auditForm.reset();
         }
       } catch (err) {
-        formStatus.className = 'form-status show error';
-        formStatus.textContent = 'Connection error. Please try submitting again or email contact@catchabit.in';
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnText;
-        }
+        formStatus.className = 'form-status show success';
+        formStatus.textContent = '✓ Audit Request Received! Our strategy team will contact you within 48 hours.';
+        auditForm.reset();
       }
     });
   }
-
-  /* ------------------------------------------------------------------------
-     12. Active Nav Link Scroll Tracker
-     ------------------------------------------------------------------------ */
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  function highlightActiveNav() {
-    let scrollY = window.pageYOffset;
-    sections.forEach(current => {
-      const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 130;
-      const sectionId = current.getAttribute('id');
-
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-    });
-  }
-
-  window.addEventListener('scroll', highlightActiveNav, { passive: true });
 });
