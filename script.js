@@ -1,5 +1,5 @@
 /**
- * CATCHABIT SOLUTIONS — LUXURY WEBSITE JAVASCRIPT MOTION & INTERACTION ENGINE
+ * CATCHABIT SOLUTIONS — LUXURY E-COMMERCE AMAZON ADS AGENCY ENGINE
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
-        const headerOffset = 80;
+        const headerOffset = 84;
         const elementPosition = targetElement.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const revealObserverOptions = {
     root: null,
-    rootMargin: '0px 0px -60px 0px',
-    threshold: 0.15
+    rootMargin: '0px 0px -70px 0px',
+    threshold: 0.12
   };
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const suffix = element.getAttribute('data-suffix') || '';
     const targetNum = parseFloat(element.getAttribute('data-value'));
     const isDecimal = element.getAttribute('data-decimal') === 'true';
-    const duration = 1800; // ms
+    const duration = 2000;
     const startTime = performance.now();
 
     function updateCounter(currentTime) {
@@ -144,16 +144,42 @@ document.addEventListener('DOMContentLoaded', () => {
           statValues.forEach(animateStatCount);
         }
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.2 });
 
     statsObserver.observe(resultsSection);
   }
 
   /* ------------------------------------------------------------------------
-     6. Magnetic Button Hover Effect
+     6. FAQ Accordion Logic
      ------------------------------------------------------------------------ */
-  const buttons = document.querySelectorAll('.btn-primary');
-  buttons.forEach(btn => {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const questionBtn = item.querySelector('.faq-question');
+    if (questionBtn) {
+      questionBtn.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all other items
+        faqItems.forEach(other => {
+          other.classList.remove('active');
+          const btn = other.querySelector('.faq-question');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+
+        // Toggle current item
+        if (!isActive) {
+          item.classList.add('active');
+          questionBtn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  });
+
+  /* ------------------------------------------------------------------------
+     7. Magnetic Button Micro-Interactions
+     ------------------------------------------------------------------------ */
+  const primaryButtons = document.querySelectorAll('.btn-primary');
+  primaryButtons.forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
@@ -167,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------------
-     7. Contact Form Handling (Web3Forms Submission & Validation)
+     8. Contact Form AJAX Submission (Web3Forms)
      ------------------------------------------------------------------------ */
   const contactForm = document.getElementById('auditForm');
   const formStatus = document.getElementById('formStatus');
@@ -177,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Submit Request';
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Submit Audit Request';
 
       if (submitBtn) {
         submitBtn.disabled = true;
@@ -185,17 +211,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       formStatus.className = 'form-status show';
-      formStatus.textContent = 'Transmitting request to CatchAbit strategy team...';
+      formStatus.textContent = 'Transmitting account audit request to CatchAbit strategy team...';
 
       const formData = new FormData(contactForm);
       const accessKey = formData.get('access_key');
 
       try {
-        // If placeholder access key is present, provide instant preview feedback
         if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
           await new Promise(resolve => setTimeout(resolve, 800));
           formStatus.className = 'form-status show success';
-          formStatus.innerHTML = '✓ <strong>Audit Request Received!</strong> Our team will review your account and reach out within 24 hours.';
+          formStatus.innerHTML = '✓ <strong>Audit Request Received!</strong> Our Amazon PPC strategy team will analyze your account and contact you within 24 hours.';
           contactForm.reset();
         } else {
           const response = await fetch('https://api.web3forms.com/submit', {
@@ -207,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (data.success) {
             formStatus.className = 'form-status show success';
-            formStatus.innerHTML = '✓ <strong>Audit Request Received!</strong> Our team will reach out within 24 hours.';
+            formStatus.innerHTML = '✓ <strong>Audit Request Received!</strong> Our Amazon PPC strategy team will analyze your account and contact you within 24 hours.';
             contactForm.reset();
           } else {
             formStatus.className = 'form-status show error';
@@ -227,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------------
-     8. Active Nav Link Tracking on Scroll
+     9. Active Nav Link Scroll Tracker
      ------------------------------------------------------------------------ */
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
@@ -236,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let scrollY = window.pageYOffset;
     sections.forEach(current => {
       const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 120;
+      const sectionTop = current.offsetTop - 130;
       const sectionId = current.getAttribute('id');
 
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
