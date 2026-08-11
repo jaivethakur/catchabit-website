@@ -31,7 +31,7 @@
         <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
           <polyline points="2 17 12 22 22 17"></polyline>
-          <polyline points="2 12 12 17 22 12"></polyline>
+          <polyline points="2 12 17 22 12"></polyline>
         </svg>
         <span class="brand-text">Catch<span>Abit</span></span>
       </a>
@@ -448,7 +448,7 @@
             </div>
           </div>
 
-          <div class="faq-box">
+          <div class="faq-item">
             <button class="faq-toggle-btn">
               <span>How do your pricing models work (% GMV vs Fixed Retainer)?</span>
               <span>▼</span>
@@ -481,24 +481,27 @@
             <p>Zero commitment. We'll analyze your Amazon Ads console and uncover the exact 3 areas where spend is being wasted within 48 hours.</p>
           </div>
 
-          <form id="auditForm" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-            <input type="hidden" name="subject" value="New Amazon Ads Audit Request — CatchAbit Website">
+          <!-- DIRECT FORM SUBMIT TO SUPPORT@CATCHABIT.IN VIA FORMSUBMIT -->
+          <form id="auditForm" action="https://formsubmit.co/support@catchabit.in" method="POST">
+            <!-- FormSubmit Options -->
+            <input type="hidden" name="_subject" value="🎯 NEW LEAD: Amazon Ads Audit Request — CatchAbit Solutions">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
 
             <div class="form-row">
               <div class="form-field">
                 <label for="name">Full Name *</label>
-                <input type="text" id="name" name="name" class="input-control" placeholder="e.g. Vikram Sharma" required>
+                <input type="text" id="name" name="Full Name" class="input-control" placeholder="e.g. Vikram Sharma" required>
               </div>
 
               <div class="form-field">
                 <label for="email">Work Email Address *</label>
-                <input type="email" id="email" name="email" class="input-control" placeholder="vikram@brand.com" required>
+                <input type="email" id="email" name="Work Email" class="input-control" placeholder="vikram@brand.com" required>
               </div>
 
               <div class="form-field">
                 <label for="monthly_spend">Monthly Amazon Ad Spend *</label>
-                <select id="monthly_spend" name="monthly_ad_spend" class="input-control" required>
+                <select id="monthly_spend" name="Monthly Ad Spend" class="input-control" required>
                   <option value="" disabled selected>Select Monthly Budget</option>
                   <option value="< ₹1L">&lt; ₹1L / month</option>
                   <option value="₹1L–5L">₹1L – ₹5L / month</option>
@@ -509,7 +512,7 @@
 
               <div class="form-field">
                 <label for="preferred_pricing">Preferred Pricing Model</label>
-                <select id="preferred_pricing" name="preferred_pricing_model" class="input-control">
+                <select id="preferred_pricing" name="Preferred Pricing Model" class="input-control">
                   <option value="" selected>Open to Recommendation</option>
                   <option value="Performance % GMV">Performance % of Ad GMV</option>
                   <option value="Fixed Retainer">Fixed Monthly Retainer</option>
@@ -518,13 +521,15 @@
 
               <div class="form-field full">
                 <label for="message">Main PPC Challenge / Account Notes</label>
-                <textarea id="message" name="message" class="input-control" rows="3" placeholder="Tell us about your main Amazon PPC challenge..."></textarea>
+                <textarea id="message" name="Main PPC Challenge" class="input-control" rows="3" placeholder="Tell us about your main Amazon PPC challenge..."></textarea>
               </div>
             </div>
 
             <div style="text-align: center; margin-top: 1rem;">
-              <button type="submit" class="btn btn-primary" style="width: 100%; max-width: 340px;">Claim Free Forensic Audit</button>
+              <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; max-width: 340px;">Claim Free Forensic Audit</button>
             </div>
+
+            <div id="formStatus" style="margin-top: 1rem; text-align: center; font-size: 0.95rem; font-weight: 600; display: none;"></div>
           </form>
         </div>
       </div>

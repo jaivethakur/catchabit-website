@@ -1,5 +1,5 @@
 /**
- * CATCHABIT SOLUTIONS — ULTRA-PROFESSIONAL JS ENGINE
+ * CATCHABIT SOLUTIONS — ULTRA-PROFESSIONAL JS ENGINE & FORM LEAD DELIVERY
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -201,4 +201,44 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  // 6. FORM SUBMISSION AJAX HANDLER (DIRECT TO SUPPORT@CATCHABIT.IN)
+  const auditForm = document.getElementById('auditForm');
+  const formStatus = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
+
+  if (auditForm && formStatus) {
+    auditForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      formStatus.style.display = 'block';
+      formStatus.style.color = 'var(--gold-bright)';
+      formStatus.textContent = '⏳ Submitting lead to support@catchabit.in...';
+      if (submitBtn) submitBtn.disabled = true;
+
+      const formData = new FormData(auditForm);
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/support@catchabit.in', {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          formStatus.style.color = 'var(--accent-green)';
+          formStatus.textContent = '✓ Forensic Audit Requested! Lead details sent directly to support@catchabit.in. Our strategy team will reach out within 48 hours.';
+          auditForm.reset();
+        } else {
+          // Fallback direct submission
+          auditForm.submit();
+        }
+      } catch (err) {
+        // Fallback standard submission
+        auditForm.submit();
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  }
 });
