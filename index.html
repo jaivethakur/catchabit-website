@@ -448,7 +448,7 @@
             </div>
           </div>
 
-          <div class="faq-item">
+          <div class="faq-box">
             <button class="faq-toggle-btn">
               <span>How do your pricing models work (% GMV vs Fixed Retainer)?</span>
               <span>▼</span>
@@ -495,6 +495,11 @@
               </div>
 
               <div class="form-field">
+                <label for="phone">Phone / WhatsApp Number *</label>
+                <input type="tel" id="phone" name="Phone / WhatsApp" class="input-control" placeholder="+91 98765 43210" required>
+              </div>
+
+              <div class="form-field">
                 <label for="email">Work Email Address *</label>
                 <input type="email" id="email" name="Work Email" class="input-control" placeholder="vikram@brand.com" required>
               </div>
@@ -510,17 +515,17 @@
                 </select>
               </div>
 
-              <div class="form-field">
-                <label for="preferred_pricing">Preferred Pricing Model</label>
+              <div class="form-field full">
+                <label for="preferred_pricing">Preferred Pricing Model (Optional)</label>
                 <select id="preferred_pricing" name="Preferred Pricing Model" class="input-control">
-                  <option value="" selected>Open to Recommendation</option>
+                  <option value="" selected>Open to Recommendation during Audit</option>
                   <option value="Performance % GMV">Performance % of Ad GMV</option>
                   <option value="Fixed Retainer">Fixed Monthly Retainer</option>
                 </select>
               </div>
 
               <div class="form-field full">
-                <label for="message">Main PPC Challenge / Account Notes</label>
+                <label for="message">Main PPC Challenge / Account Notes (Optional)</label>
                 <textarea id="message" name="Main PPC Challenge" class="input-control" rows="3" placeholder="Tell us about your main Amazon PPC challenge..."></textarea>
               </div>
             </div>
